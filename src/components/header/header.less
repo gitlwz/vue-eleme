@@ -1,0 +1,164 @@
+@supports-coun-background: rgba(0, 0, 0, 0.2);
+@name-size: 16px;
+@description-size: 12px;
+@text-size: 10px;
+.header {
+    position: relative;
+    color: #fff;
+    overflow: hidden;
+    background: rgba(7, 17, 27, 0.5);
+    .content-wrapper {
+        position: relative;
+        padding: 24px 12px 18px 24px;
+        font-size: 0;
+    }
+    .avatar {
+        display: inline-block;
+        vertical-align: top;
+    }
+    .content {
+        display: inline-block;
+        font-size: 14px;
+        margin-left: 16px;
+    }
+    .brand {
+        display: inline-block;
+        vertical-align: top;
+        width: 30px;
+        height: 18px;
+        background-image: url("../../assets/brand@2x.png");
+        background-size: 30px 18px;
+        background-repeat: no-repeat;
+    }
+    .title {
+        margin: 2px 0 8px;
+    }
+    .title .name {
+        margin-left: 6px;
+        font-size: @name-size;
+        line-height: 18px;
+        font-weight: bold;
+    }
+    .description {
+        margin-bottom: 10px;
+        line-height: 12px;
+        font-size: @description-size;
+    }
+    .bulletin-wrapper {
+        background-color: rgba(7, 17, 27, 0.2);
+        position: relative;
+        height: 28px;
+        line-height: 28px;
+        padding: 0 22px 0 12px;
+        white-space: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .bulletin-title {
+        vertical-align: top;
+        margin-top: 8px;
+        display: inline-block;
+        width: 22px;
+        height: 12px;
+        background-image: url("../../assets/bulletin@2x.png");
+        background-size: 22px 12px;
+    }
+    .bulletin-text {
+        vertical-align: top;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        font-size: @text-size;
+    }
+    .bulletin-text:after {
+        content: '>';
+        position: absolute;
+        display: inline-block;
+        right: 10px;
+        top: 0;
+    }
+    .background {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        filter: blur(10px);
+    }
+    .support {
+        .decrease {
+            display: inline-block;
+            background-image: url("decrease_1@2x.png");
+            width: 12px;
+            height: 12px;
+            background-size: 12px 12px;
+        }
+        .text {
+            font-size: @text-size;
+        }
+    }
+    .supports-count {
+        position: absolute;
+        right: 12px;
+        bottom: 14px;
+        padding: 0 8px;
+        height: 24px;
+        line-height: 24px;
+        border-radius: 12px;
+        background: @supports-coun-background;
+        .text {
+            font-size: @text-size;
+        }
+        .decrease {
+            display: inline-block;
+            margin-top: -1px;
+            vertical-align: top;
+        }
+    }
+    //  弹出层部分start
+    .transition-detail {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        z-index: 100;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(7, 17, 27, 0.8);
+        .detail-main {
+            margin-top: 64px;
+            padding-bottom: 64px;
+            text-align: center;
+        }
+    }
+    //动画部分start
+    .fade-enter-active {
+        animation: bounce-in .5s;
+    }
+    .fade-leave-active {
+        animation: bounce-out .5s;
+    }
+    @keyframes bounce-in {
+        0% {
+            transform: scale(0);
+        }
+        50% {
+            transform: scale(1.5);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    @keyframes bounce-out {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.5);
+        }
+        100% {
+            transform: scale(0);
+        }
+    }
+    //动画部分end
+}
