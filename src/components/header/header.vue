@@ -18,7 +18,7 @@
 				</div>
 				<div class="supports-count">
 					<span class="text">5个</span>
-					<span class="decrease">›</span>
+					<span class="supports-count-decrease">›</span>
 				</div>
 			</div>
 		</div>
@@ -32,7 +32,21 @@
 		<transition name="fade">
 			<div v-if="detailShow" class="transition-detail" @click="hideDetail">
 				<div class="detail-main">
-					<h1 >粥品香坊（回龙观）</h1>
+					<h1>粥品香坊（回龙观）</h1>
+					<div class="star-wrapper">
+						<star :score='1.5'></star>
+					</div>
+					<div class="title">
+						<div class="line"></div>
+						<div class="text">优惠信息</div>
+						<div class="line"></div>
+					</div>
+					<ul class="supports">
+						<li>
+							<span class="icon decrease"></span>
+							<span class="text">在线支付满28减5</span>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</transition>
@@ -40,13 +54,22 @@
 </template>
 
 <script>
+	import star from '../star/star'
 	require('./header.less')
 	export default {
 		name: 'header',
+		porps:{
+			seller:{
+				type:Object
+			}
+		},
 		data() {
 			return {
 				detailShow: false
 			}
+		},
+		components: {
+			star: star
 		},
 		methods: {
 			showDetail() {
@@ -58,7 +81,3 @@
 		}
 	}
 </script>
-
-<style scoped>
-
-</style>

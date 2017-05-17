@@ -7,6 +7,20 @@
     color: #fff;
     overflow: hidden;
     background: rgba(7, 17, 27, 0.5);
+    .icon{
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-right: 6px;
+        background-repeat: no-repeat;
+        background-size: 16px 16px;
+    }
+    .decrease{
+        background-image: url(decrease_1@2x.png);  //减
+    }
+    .discount{
+        background-image: url(discount_2@2x.png);   //折扣
+    }
     .content-wrapper {
         position: relative;
         padding: 24px 12px 18px 24px;
@@ -110,7 +124,7 @@
         .text {
             font-size: @text-size;
         }
-        .decrease {
+        .supports-count-decrease {
             display: inline-block;
             margin-top: -1px;
             vertical-align: top;
@@ -129,6 +143,38 @@
             margin-top: 64px;
             padding-bottom: 64px;
             text-align: center;
+            .star-wrapper{
+                margin-top: 18px;
+            }
+            .title{
+                width: 80%;
+                margin: 28px auto 0 auto;
+                display: flex;
+                align-items:center;
+                .text{
+                    padding-left: 12px;
+                    padding-right: 12px;
+                }
+                .line{
+                    flex: 1;
+                    height: 1px;
+                    background-color: rgba(255,255,255,0.2);
+                }
+            }
+            .supports{
+                width: 80%;
+                margin: 22px auto;
+                li{
+                    padding: 0 12px;
+                    text-align: left;
+                    .text{
+                        display: inline-block;
+                        vertical-align: top;
+                        font-size: 12px;
+                        line-height: 17px;
+                    }
+                }
+            }
         }
     }
     //动画部分start
