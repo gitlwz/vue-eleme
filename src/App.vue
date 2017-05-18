@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<v-header :seller="headerData"></v-header>
+		<v-header :seller="seller"></v-header>
 		<div class="tab border-1px bottom-border">
 			<div class="tab-item">
 				<router-link v-bind:to="'/goods'">
@@ -25,19 +25,22 @@
 
 <script>
 	import header from '@/components/header/header';
-	import data from '@/assets/data.json'
+	import data from '@/assets/data.json';
 	export default {
 		name: 'app',
 		data(){
 			return{
-				headerData:{}
+				seller: {},
 			}
 		},
 		components: {
 			"v-header": header
 		},
 		created(){
-			this.headerData = data.seller
+			setTimeout(function(){
+				this.seller = data.seller
+			}.bind(this),1000)
+			
 		}
 	}
 </script>

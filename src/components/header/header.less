@@ -7,7 +7,7 @@
     color: #fff;
     overflow: hidden;
     background: rgba(7, 17, 27, 0.5);
-    .icon{
+    .icon {
         display: inline-block;
         width: 16px;
         height: 16px;
@@ -15,11 +15,11 @@
         background-repeat: no-repeat;
         background-size: 16px 16px;
     }
-    .decrease{
-        background-image: url(decrease_1@2x.png);  //减
+    .decrease {
+        background-image: url(decrease_1@2x.png); //减
     }
-    .discount{
-        background-image: url(discount_2@2x.png);   //折扣
+    .discount {
+        background-image: url(discount_2@2x.png); //折扣
     }
     .content-wrapper {
         position: relative;
@@ -139,35 +139,37 @@
         height: 100%;
         width: 100%;
         background-color: rgba(7, 17, 27, 0.8);
+        overflow-y: auto;
         .detail-main {
             margin-top: 64px;
             padding-bottom: 64px;
             text-align: center;
-            .star-wrapper{
+            .star-wrapper {
                 margin-top: 18px;
             }
-            .title{
+            .title {
                 width: 80%;
                 margin: 28px auto 0 auto;
                 display: flex;
-                align-items:center;
-                .text{
+                align-items: center;
+                .text {
                     padding-left: 12px;
                     padding-right: 12px;
                 }
-                .line{
+                .line {
                     flex: 1;
                     height: 1px;
-                    background-color: rgba(255,255,255,0.2);
+                    background-color: rgba(255, 255, 255, 0.2);
                 }
             }
-            .supports{
+            .supports {
                 width: 80%;
                 margin: 22px auto;
-                li{
+                li {
+                    margin-bottom: 10px;
                     padding: 0 12px;
                     text-align: left;
-                    .text{
+                    .text {
                         display: inline-block;
                         vertical-align: top;
                         font-size: 12px;
@@ -175,6 +177,26 @@
                     }
                 }
             }
+            .introduced {
+                width: 80%;
+                margin: 22px auto;
+                p {
+                    padding: 0 12px;
+                    line-height: 24px;
+                    font-size: 12px;
+                    text-align: left;
+                }
+            }
+        }
+        .detail-clos{
+            border-radius: 50%;
+            text-align: center;
+            width: 32px;
+            height: 32px;
+            border: solid 1px rgba(255, 255, 255, 0.2);
+            line-height: 28px;
+            margin: -60px auto 0 auto;
+            font-size: 30px;
         }
     }
     //动画部分start

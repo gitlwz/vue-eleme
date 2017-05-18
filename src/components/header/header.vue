@@ -7,48 +7,61 @@
 			<div class="content">
 				<div class="title">
 					<span class="brand"></span>
-					<span class="name">粥品香坊（回龙观）</span>
+					<span class="name">{{seller.name}}</span>
 				</div>
 				<div class="description">
-					蜂鸟专送/38分钟送达
+					{{seller.description}}/{{seller.deliveryTime}}分钟送达
 				</div>
 				<div class="support">
 					<span class="decrease"></span>
-					<span class="text">在线支付满28减5</span>
+					<span class="text">{{ seller.supports && seller.supports[0].description}}</span>
 				</div>
-				<div class="supports-count">
-					<span class="text">5个</span>
+				<div class="supports-count" @click.stop.prevent="showDetail">
+					<span class="text">{{ seller.supports && seller.supports.length}}个</span>
 					<span class="supports-count-decrease">›</span>
 				</div>
 			</div>
 		</div>
-		<div class="bulletin-wrapper" @click="showDetail">
+		<div class="bulletin-wrapper" @click.stop.prevent="showDetail">
 			<span class="bulletin-title"></span>
-			<span class="bulletin-text">粥品香坊其烹饪粥料的秘方源于中国千年古法，在融和现代制作工艺，由世界烹饪大师屈浩先生领衔研发。坚守纯天然、0添加的良心品质深得消费者青睐，发展至今成为粥类的引领品牌。是2008年奥运会和2013年园博会指定餐饮服务商。</span>
+			<span class="bulletin-text">{{seller.bulletin}}</span>
 		</div>
 		<div class="background">
-			<img src="http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg" />
+			<img :src="seller.avatar" />
 		</div>
 		<transition name="fade">
-			<div v-if="detailShow" class="transition-detail" @click="hideDetail">
-				<div class="detail-main">
-					<h1>粥品香坊（回龙观）</h1>
-					<div class="star-wrapper">
-						<star :score='1.5'></star>
+				<div v-show="detailShow" class="transition-detail" @click.stop.prevent="hideDetail">
+					<div class="detail-main">
+						<h1>{{seller.name}}</h1>
+						<div class="star-wrapper">
+							<star :score='1.5'></star>
+						</div>
+						<div class="title">
+							<div class="line"></div>
+							<div class="text">优惠信息</div>
+							<div class="line"></div>
+						</div>
+						<ul class="supports">
+							<li v-for="(item, index) in seller.supports">
+								<span class="icon decrease" :class="item.type|supportsClass"></span>
+								<span class="text">{{item.description}}</span>
+							</li>
+						</ul>
+						<div class="title">
+							<div class="line"></div>
+							<div class="text">商家公告</div>
+							<div class="line"></div>
+						</div>
+						<div class="introduced">
+							<p>
+								{{seller.bulletin}}
+							</p>
+						</div>
 					</div>
-					<div class="title">
-						<div class="line"></div>
-						<div class="text">优惠信息</div>
-						<div class="line"></div>
+					<div class="detail-clos">
+						×
 					</div>
-					<ul class="supports">
-						<li>
-							<span class="icon decrease"></span>
-							<span class="text">在线支付满28减5</span>
-						</li>
-					</ul>
 				</div>
-			</div>
 		</transition>
 	</div>
 </template>
@@ -56,20 +69,33 @@
 <script>
 	import star from '../star/star'
 	require('./header.less')
+	const imgClasss = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
 	export default {
 		name: 'header',
-		porps:{
-			seller:{
-				type:Object
+		props: {
+			seller: {
+				type: Object
 			}
 		},
 		data() {
 			return {
-				detailShow: false
+				detailShow: false,
+
 			}
 		},
+		//		created(){
+		//			console.log('============111======',this.seller)
+		//		},
+		//		beforeUpdate(){
+		//			console.log('==================',this.seller)
+		//		},
 		components: {
 			star: star
+		},
+		filters: {
+			supportsClass(value) {
+				return imgClasss[value]
+			}
 		},
 		methods: {
 			showDetail() {
