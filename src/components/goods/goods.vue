@@ -28,6 +28,9 @@
 									<div class="price">
 										<span class="now">￥{{food.price}}</span><span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
 									</div>
+									<div class="cartControl-wrapper">
+										<cartcontrol :food="food"></cartcontrol>
+									</div>
 								</div>
 							</li>
 						</ul>
@@ -41,9 +44,9 @@
 
 <script>
 	import BScroll from 'better-scroll';
-	import data from '@/assets/data.json'
+	import data from '@/assets/data.json';
+	import cartcontrol from '@/components/cartcontrol/cartcontrol';
 	require('./goods.less')
-
 	const imgClasss = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
 	export default {
 		name: '',
@@ -53,6 +56,9 @@
 				scrolly: 0,
 				listHeight: []
 			}
+		},
+		components: {
+			cartcontrol: cartcontrol
 		},
 		created() {
 			this.goods = data.goods;
