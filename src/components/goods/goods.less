@@ -1,0 +1,124 @@
+.goods {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    bottom: 48px;
+    overflow: hidden;
+    //left
+    .leaft-menu {
+        width: 80px;
+        background: #f3f5f7;
+        
+        .item {
+            position: relative;
+            display: flex;
+            width: 56px;
+            height: 54px;
+            padding: 0 12px;
+            align-items: center;
+            >span {
+                display: inline-block;
+                font-size: 10px;
+                &:after {
+                    display: block;
+                    position: absolute;
+                    left: 12px;
+                    bottom: 0;
+                    border-top: 1px solid rgba(7, 17, 27, 0.1);
+                    width: 56px;
+                    content: '';
+                }
+            }
+        }
+        .current {
+            background: #fff;
+            font-weight: 700;
+            z-index: 10;
+            >span:after{
+                border-color: white;
+            }
+        }
+    }
+    //right
+    .right-content {
+        flex: 1;
+        .group-title {
+            padding-left: 14px;
+            height: 26px;
+            line-height: 26px;
+            border-left: 2px solid #d9dde1;
+            font-size: 12px;
+            color: #93999f;
+            background: #f3f5f7;
+        }
+        .group-item {
+            display: flex;
+            padding: 18px;
+            .group-icon {
+                width: 57px;
+                margin-right: 10px;
+            }
+            .group-content {
+                flex: 1;
+                .title {
+                    font-size: 14px;
+                    color: #07111b;
+                    line-height: 14px;
+                    height: 14px;
+                    margin: 2px 0 8px 0;
+                }
+                .desc,
+                .extra {
+                    font-size: 10px;
+                    color: #93999f;
+                    //                  line-height: 10px;
+                }
+                .desc {
+                    margin-bottom: 8px;
+                    line-height: 12px;
+                }
+                .count {
+                    margin-right: 10px;
+                }
+                .price {
+                    line-height: 24px;
+                    .now {
+                        margin-right: 8px;
+                        font-size: 14px;
+                        color: #f01414;
+                    }
+                    .old {
+                        font-size: 10px;
+                        color: #93999f;
+                        text-decoration: line-through;
+                    }
+                }
+            }
+        }
+    }
+    .icon {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        vertical-align: top;
+        margin-right: 4px;
+        background-size: 12px 12px;
+        background-repeat: no-repeat;
+    }
+    .decrease {
+        background-image: url(img/decrease_3@2x.png);
+    }
+    .discount {
+        background-image: url(img/discount_3@2x.png);
+    }
+    .guarantee {
+        background-image: url(img/guarantee_3@2x.png);
+    }
+    .invoice {
+        background-image: url(img/invoice_3@2x.png);
+    }
+    .special {
+        background-image: url(img/special_3@2x.png);
+    }
+}

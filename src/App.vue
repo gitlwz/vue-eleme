@@ -3,7 +3,7 @@
 		<v-header :seller="seller"></v-header>
 		<div class="tab border-1px bottom-border">
 			<div class="tab-item">
-				<router-link v-bind:to="'/goods'">
+				<router-link to="/goods">
 					商品
 				</router-link>
 			</div>
@@ -18,34 +18,47 @@
 				</router-link>
 			</div>
 		</div>
-
-		<router-view></router-view>
+			<transition name="custom-classes-transition" :enter-active-class="transitionEnterName" :leave-active-class="transitionLeaveName">
+				<router-view></router-view>
+			</transition>
 	</div>
 </template>
 
 <script>
 	import header from '@/components/header/header';
 	import data from '@/assets/data.json';
+	require('./index.less');
 	export default {
 		name: 'app',
-		data(){
-			return{
+		data() {
+			return {
 				seller: {},
+				transitionEnterName: 'animated bounceInRight',
+				transitionLeaveName: 'animated bounceOutLeft'
 			}
 		},
 		components: {
 			"v-header": header
 		},
-		created(){
-			setTimeout(function(){
+		created() {
+			setTimeout(function() {
 				this.seller = data.seller
-			}.bind(this),1000)
-			
+			}.bind(this), 1000)
+
+		},
+		watch: {
+			'$route' (to, from) {
+
+			}
 		}
 	}
 </script>
 
 <style scoped>
+	.content{
+		position: relative;
+		overflow: hidden;
+	}
 	.tab {
 		position: relative;
 		width: 100%;
@@ -53,12 +66,10 @@
 		display: flex;
 		line-height: 40px;
 	}
-	
 	.tab-item {
 		flex: 1;
 		text-align: center;
 	}
-	
 	.tab .tab-item a {
 		display: block;
 		font-size: 14px;

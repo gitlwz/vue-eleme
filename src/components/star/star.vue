@@ -1,7 +1,7 @@
 <template>
 	<div class="star">
 		<div class="star-items">
-			<span v-for="itemClass in itemClasses" :class="itemClass" class="star-item"></span>
+			<span v-for="itemClass in itemClasses" :class="[itemClass,startSize]"  class="star-item"></span>
 		</div>
 	</div>
 </template>
@@ -13,9 +13,10 @@
 	const CLS_OFF = 'off';
 	export default {
 		name: 'star',
-		props:['score'],
+		props:['score','startSize'],
 		data() {
 			return {
+				
 			}
 		},
 		computed: {

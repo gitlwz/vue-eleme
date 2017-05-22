@@ -30,38 +30,38 @@
 			<img :src="seller.avatar" />
 		</div>
 		<transition name="fade">
-				<div v-show="detailShow" class="transition-detail" @click.stop.prevent="hideDetail">
-					<div class="detail-main">
-						<h1>{{seller.name}}</h1>
-						<div class="star-wrapper">
-							<star :score='1.5'></star>
-						</div>
-						<div class="title">
-							<div class="line"></div>
-							<div class="text">优惠信息</div>
-							<div class="line"></div>
-						</div>
-						<ul class="supports">
-							<li v-for="(item, index) in seller.supports">
-								<span class="icon decrease" :class="item.type|supportsClass"></span>
-								<span class="text">{{item.description}}</span>
-							</li>
-						</ul>
-						<div class="title">
-							<div class="line"></div>
-							<div class="text">商家公告</div>
-							<div class="line"></div>
-						</div>
-						<div class="introduced">
-							<p>
-								{{seller.bulletin}}
-							</p>
-						</div>
+			<div v-show="detailShow" class="transition-detail" @click.stop.prevent="hideDetail">
+				<div class="detail-main">
+					<h1>{{seller.name}}</h1>
+					<div class="star-wrapper">
+						<star :score='2.5'></star>
 					</div>
-					<div class="detail-clos">
-						×
+					<div class="title">
+						<div class="line"></div>
+						<div class="text">优惠信息</div>
+						<div class="line"></div>
+					</div>
+					<ul class="supports">
+						<li v-for="(item, index) in seller.supports">
+							<span class="icon decrease" :class="item.type|supportsClass"></span>
+							<span class="text">{{item.description}}</span>
+						</li>
+					</ul>
+					<div class="title">
+						<div class="line"></div>
+						<div class="text">商家公告</div>
+						<div class="line"></div>
+					</div>
+					<div class="introduced">
+						<p>
+							{{seller.bulletin}}
+						</p>
 					</div>
 				</div>
+				<div class="detail-clos">
+					×
+				</div>
+			</div>
 		</transition>
 	</div>
 </template>
@@ -83,12 +83,9 @@
 
 			}
 		},
-		//		created(){
-		//			console.log('============111======',this.seller)
-		//		},
-		//		beforeUpdate(){
-		//			console.log('==================',this.seller)
-		//		},
+		created() {
+			
+		},
 		components: {
 			star: star
 		},
