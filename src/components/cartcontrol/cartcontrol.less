@@ -1,13 +1,34 @@
 .cartcontrol {
+    display: flex;
+    .cart-count {
+        display: inline-block;
+        line-height: 24px;
+        vertical-align: middle;
+        width: 25px;
+        text-align: center;
+        color: #93999f;
+    }
+    
     .font {
         display: inline-block;
         padding: 0px;
         height: 24px;
         line-height: 22px;
+        width: 24px;
+        text-align: center;
         font-size: 24px;
         vertical-align: top;
+        border-radius: 50%;
+    }
+    .font-add{
         background-color: #00a0dc;
         color: white;
-        border-radius: 50%;
+    }
+    .font-del{
+        box-sizing: border-box;
+        border: solid 1px #00a0dc;
+        color:#00a0dc;
+        font-size: 40px;
+        line-height: 15px;
     }
 }

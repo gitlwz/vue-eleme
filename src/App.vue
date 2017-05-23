@@ -18,9 +18,11 @@
 				</router-link>
 			</div>
 		</div>
-			<transition name="custom-classes-transition" :enter-active-class="transitionEnterName" :leave-active-class="transitionLeaveName">
+		<transition name="custom-classes-transition" :enter-active-class="transitionEnterName" :leave-active-class="transitionLeaveName">
+			<keep-alive>
 				<router-view></router-view>
-			</transition>
+			</keep-alive>
+		</transition>
 	</div>
 </template>
 
@@ -55,10 +57,11 @@
 </script>
 
 <style scoped>
-	.content{
+	.content {
 		position: relative;
 		overflow: hidden;
 	}
+	
 	.tab {
 		position: relative;
 		width: 100%;
@@ -66,15 +69,18 @@
 		display: flex;
 		line-height: 40px;
 	}
+	
 	.tab-item {
 		flex: 1;
 		text-align: center;
 	}
+	
 	.tab .tab-item a {
 		display: block;
 		font-size: 14px;
 		color: rgb(77, 85, 93);
 	}
+	
 	.tab .tab-item .router-link-active {
 		color: rgb(240, 20, 20);
 	}

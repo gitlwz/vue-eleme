@@ -29,7 +29,7 @@
 										<span class="now">￥{{food.price}}</span><span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
 									</div>
 									<div class="cartControl-wrapper">
-										<cartcontrol :food="food"></cartcontrol>
+										<cartcontrol :food="food" @increment="incrementTotal"></cartcontrol>
 									</div>
 								</div>
 							</li>
@@ -37,8 +37,11 @@
 					</li>
 				</ul>
 			</div>
-		</div>
 
+		</div>
+		<div class="card">
+			<shopcart :min-price="seller.minPrice" ref="shopCart"></shopcart>
+		</div>
 	</div>
 </template>
 
@@ -46,22 +49,26 @@
 	import BScroll from 'better-scroll';
 	import data from '@/assets/data.json';
 	import cartcontrol from '@/components/cartcontrol/cartcontrol';
+	import shopcart from '@/components/shopcart/shopcart'
 	require('./goods.less')
 	const imgClasss = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
 	export default {
 		name: '',
 		data() {
 			return {
+				seller:{},
 				goods: [],
 				scrolly: 0,
 				listHeight: []
 			}
 		},
 		components: {
-			cartcontrol: cartcontrol
+			cartcontrol: cartcontrol,
+			shopcart: shopcart
 		},
 		created() {
 			this.goods = data.goods;
+			this.seller = data.seller;
 			this.$nextTick(() => {
 				this._initScroll();
 				this._calculateHeight();
@@ -116,6 +123,9 @@
 				let el = foodList[index];
 				this.foodScroll.scrollToElement(el, 300);
 			},
+			incrementTotal(event,price) {
+				this.$refs.shopCart.dropAndMoney(event,price)
+			}
 		}
 
 	}
