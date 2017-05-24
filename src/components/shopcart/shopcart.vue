@@ -13,7 +13,7 @@
 				</div>
 			</div>
 			<div class="content-right">
-				<div class="pay " :class="{enough:totalPrice >= minPrice}">
+				<div class="pay" :class="{enough:totalPrice >= minPrice}" @click="pay">
 					{{payDesc}}
 				</div>
 			</div>
@@ -21,7 +21,7 @@
 		<transition name="shopcart-trans">
 			<div class="shopcart-list" v-show="listShow">
 				<div class="list-header">
-					<h1>购物车</h1><span class="list-clear">清空</span>
+					<h1>购物车</h1><span class="list-clear" @click="empty($event)">清空</span>
 				</div>
 				<div class="list-content" ref="listContent">
 					<ul>
@@ -37,6 +37,9 @@
 					</ul>
 				</div>
 			</div>
+		</transition>
+		<transition name="shopcart-mask" enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
+			<div class="list-mask" v-show="listShow" @click="toggleList"></div>
 		</transition>
 	</div>
 </template>
@@ -124,6 +127,16 @@
 					return false;
 				}
 				this.fold = !this.fold;
+			},
+			empty() {
+				this.foods.forEach((food) => {
+					food.count = 0;
+				});
+			},
+			pay(){
+				if(this.totalPrice >= this.minPrice){
+					alert(`需要支付${this.totalPrice}元`)
+				}
 			}
 		},
 		components: {

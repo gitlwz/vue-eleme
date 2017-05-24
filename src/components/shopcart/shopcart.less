@@ -145,10 +145,22 @@
     }
     .shopcart-trans-enter-active,
     .shopcart-trans-leave-active {
-        transition: transform .5s
+        transition: transform .5s;
     }
     .shopcart-trans-enter,
     .shopcart-trans-leave-active {
-       transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    
+    .list-mask {
+        position: fixed;
+        filter:blur(5px);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        opacity: 1;
+        background: rgba(7, 17, 27, 0.6);
     }
 }
