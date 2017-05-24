@@ -1,7 +1,7 @@
 <template>
 	<div class="cartcontrol">
 		<transition name="fadeINOUT" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
-			<div class="cart-decrease" v-show="food.count>0" @click.stop.prevent="decreaseCart($event,food.price)">
+			<div class="cart-decrease" v-show="food.count>0" @click.stop.prevent="decreaseCart($event)">
 				<transition name="bounce" enter-active-class="animated bounceInRight" leave-active-class="animated bounceOutRight">
 					<span v-show="food.count>0" class="font font-del">-</span>
 				</transition>
@@ -10,13 +10,13 @@
 		<span class="cart-count" v-show="food.count > 0 ">
       		{{food.count}}
     	</span>
-		<span class="font font-add" @click.stop.prevent="addCart($event,food.price)">＋</span>
+		<span class="font font-add" @click.stop.prevent="addCart($event)">＋</span>
 	</div>
 </template>
 
 <script>
 	export default {
-		name: 'cartcontrol',
+		name:'cartcontrol',
 		props: ['food'],
 		data() {
 			return {}
@@ -25,7 +25,7 @@
 
 		},
 		methods: {
-			addCart(event,price) {
+			addCart(event) {
 				if(!event._constructed) {
 					// 去掉自带click事件的点击
 					return;
@@ -35,15 +35,15 @@
 				} else {
 					this.food.count++;
 				}
-				this.$emit('increment',event,price);
+				this.$emit('increment',event);
 			},
-			decreaseCart(event,price) {
+			decreaseCart(event) {
 				if(!event._constructed) {
 					// 去掉自带click事件的点击
 					return;
 				}
+				if(!this.food.count) return;
 				this.food.count--;
-				this.$emit('increment',event,-(price*1));
 			}
 		}
 	}

@@ -29,7 +29,7 @@
 										<span class="now">￥{{food.price}}</span><span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
 									</div>
 									<div class="cartControl-wrapper">
-										<cartcontrol :food="food" @increment="incrementTotal"></cartcontrol>
+										<cartcontrol :food.sync="food" @increment="incrementTotal"></cartcontrol>
 									</div>
 								</div>
 							</li>
@@ -40,7 +40,7 @@
 
 		</div>
 		<div class="card">
-			<shopcart :min-price="seller.minPrice" ref="shopCart"></shopcart>
+			<shopcart :foods.sync="getFood" :min-price="seller.minPrice" ref="shopCart"></shopcart>
 		</div>
 	</div>
 </template>
@@ -56,7 +56,7 @@
 		name: '',
 		data() {
 			return {
-				seller:{},
+				seller: {},
 				goods: [],
 				scrolly: 0,
 				listHeight: []
@@ -84,6 +84,17 @@
 					}
 				}
 				return 0;
+			},
+			getFood() {
+				let foods = [];
+				this.goods.forEach((good) => {
+					good.foods.forEach((food) => {
+						if(food.count) {
+							foods.push(food);
+						}
+					});
+				});
+				return foods
 			}
 		},
 		filters: {
@@ -123,8 +134,8 @@
 				let el = foodList[index];
 				this.foodScroll.scrollToElement(el, 300);
 			},
-			incrementTotal(event,price) {
-				this.$refs.shopCart.dropAndMoney(event,price)
+			incrementTotal(event) {
+				this.$refs.shopCart.drop(event)
 			}
 		}
 

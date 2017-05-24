@@ -5,6 +5,7 @@
     .content {
         height: 100%;
         display: flex;
+        z-index: 50;
         background: #141d27;
         .content-left {
             flex: 1;
@@ -36,7 +37,7 @@
                         color: white;
                     }
                 }
-                .logo.enough{
+                .logo.enough {
                     background-color: #00a0dc;
                 }
                 .num {
@@ -87,5 +88,67 @@
                 color: #fff;
             }
         }
+    }
+    .shopcart-list {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        transform: translate3d(0, -100%, 0);
+        .list-header {
+            display: flex;
+            line-height: 41px;
+            padding: 0 18px;
+            box-sizing: border-box;
+            background: #f3f5f7;
+            border-bottom: 1px solid rgba(7, 17, 27, 0.1);
+            font-size: 14px;
+            >h1 {
+                flex: 1;
+            }
+            .list-clear {
+                color: #00a0dc;
+                padding: 0 0 0 18px;
+            }
+        }
+        .list-content {
+            padding: 0 18px;
+            max-height: 217px;
+            overflow: hidden;
+            background: #fff;
+            .shopcart-food {
+                padding: 12px 0;
+                box-sizing: border-box;
+                position: relative;
+            }
+            .name {
+                line-height: 24px;
+                font-size: 14px;
+                color: #07111b;
+            }
+            .price {
+                position: absolute;
+                right: 90px;
+                bottom: 12px;
+                line-height: 24px;
+                font-size: 14px;
+                font-weight: 700;
+                color: #f01414;
+            }
+            .cartControl-wrapper {
+                position: absolute;
+                right: 0;
+                bottom: 12px;
+            }
+        }
+    }
+    .shopcart-trans-enter-active,
+    .shopcart-trans-leave-active {
+        transition: transform .5s
+    }
+    .shopcart-trans-enter,
+    .shopcart-trans-leave-active {
+       transform: translate3d(0, 0, 0);
     }
 }
