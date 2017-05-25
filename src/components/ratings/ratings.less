@@ -77,7 +77,89 @@
         border-top: 1px solid rgba(1, 17, 27, 0.1);
         background: #f3f5f7;
     }
-    .centre{
+    .centre {
         padding: 0 18px;
+    }
+    .bottom {
+        padding: 0 18px;
+        
+        .bottom-content {
+            border-top: 1px solid rgba(1, 17, 27, 0.1);
+        }
+        .li-item {
+            border-bottom: 1px solid rgba(1, 17, 27, 0.1);
+            display: flex;
+            padding: 18px 0px;
+            .item-left {
+                flex: 0 0 28px;
+                width: 28px;
+                margin-right: 12px;
+                img {
+                    border-radius: 50%;
+                }
+            }
+            .item-right {
+                position: relative;
+                
+                flex: 1;
+                .name {
+                    margin-bottom: 4px;
+                    line-height: 12px;
+                    font-weight: 700;
+                    font-size: 10px;
+                    color: #07111b;
+                }
+                .min-size {
+                    width: 10px;
+                    height: 10px;
+                    margin-right: 3px;
+                    background-size: 10px 10px;
+                }
+                .star-group {
+                    display: inline-block;
+                }
+                .delivery {
+                    display: inline-block;
+                    vertical-align: middle;
+                    font-size: 10px;
+                    line-height: 12px;
+                    color: #93999f;
+                }
+                .text {
+                    line-height: 18px;
+                    color: #07111b;
+                    font-size: 12px;
+                    margin-bottom: 8px;
+                }
+                .recommend {
+                    line-height: 16px;
+                    font-size: 0;
+                    .iconfont {
+                        color: #00a0dc;
+                        display: inline-block;
+                        margin: 0 8px 4px 0;
+                        font-size: 9px;
+                    }
+                    .genre {
+                        padding: 0 6px;
+                        border: 1px solid rgba(7, 17, 27, 0.1);
+                        border-radius: 1px;
+                        color: #93999f;
+                        display: inline-block;
+                        margin: 0 8px 4px 0;
+                        font-size: 9px;
+                    }
+                    
+                }
+                .time {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        line-height: 12px;
+                        font-size: 10px;
+                        color: #93999f;
+                    }
+            }
+        }
     }
 }

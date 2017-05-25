@@ -1,6 +1,6 @@
 <template>
 	<div class="ratings lwz-content" ref="ratingsel">
-		<div class="ratings-content" >
+		<div class="ratings-content">
 			<div class="overview">
 				<div class="left">
 					<h1 class="score">{{seller.score}}</h1>
@@ -30,7 +30,35 @@
 			</div>
 			<div class="split"></div>
 			<div class="centre">
-				<ratingselect @increment="incrementTotal" :indexType="indexType.ALL"></ratingselect>
+				<ratingselect @increment="incrementTotal" :only-content="onlyContent" :ratings="ratings" :selectType="selectType"></ratingselect>
+			</div>
+			<div class="bottom">
+				<ul class="bottom-content">
+					<li class="li-item" v-for="rating in ratings" v-show="needShow(rating.rateType, rating.text)">
+						<div class="item-left">
+							<img :src="rating.avatar" width="28" height="28" />
+						</div>
+						<div class="item-right">
+							<h1 class="name">{{rating.username}}</h1>
+							<div class="star-wrappers">
+								<div class="star-group">
+									<star :score='rating.score' startSize='min-size'></star>
+								</div>
+								<span class="delivery" v-show="rating.deliveryTime">{{rating.deliveryTime}}</span>
+							</div>
+							<p class="text">
+								{{rating.text}}
+							</p>
+							<div class="recommend" v-show="rating.recommend &&rating.recommend.length">
+								<i class="iconfont icon-damuzhi"></i>
+								<span class="genre" v-for="item in rating.recommend">{{item}}</span>
+							</div>
+							<div class="time">
+								{{rating.rateTime | formatDate}}
+							</div>
+						</div>
+					</li>
+				</ul>
 			</div>
 
 		</div>
@@ -39,20 +67,22 @@
 
 <script>
 	import data from '@/assets/data.json';
+	import { formatDate } from '@/assets/utility/date.js'
 	import star from '../star/star';
 	import BScroll from 'better-scroll';
 	import ratingselect from '@/components/ratingselect/ratingselect';
 	import './ratings.less';
-	const SELECT ={
-		ALL:2,
-		SATIS:0,
-		TAUNT:1
+	const SELECT = {
+		ALL: 2,
+		SATIS: 0,
+		TAUNT: 1
 	}
 	export default {
 		name: 'ratings',
 		data() {
 			return {
-				indexType:SELECT,
+				selectType: SELECT.ALL,
+				onlyContent: false,
 				ratings: [],
 				seller: {}
 			}
@@ -61,19 +91,40 @@
 			this.ratings = data.ratings;
 			this.seller = data.seller;
 			this.$nextTick(() => {
-				console.log('$$$$$$',this.$el)
 				this.scroll = new BScroll(this.$refs.ratingsel, {
 					click: true
 				});
 			});
 		},
+		computed: {
+
+		},
 		components: {
 			star: star,
 			ratingselect
 		},
-		methods:{
-			incrementTotal(selectType, type){
-				console.log('$$$$$$',selectType, type)
+		filters: {
+			formatDate(time) {
+				let date = new Date(time);
+				return formatDate(date, 'yyyy-MM-dd hh:mm');
+			}
+		},
+		methods: {
+			incrementTotal(selectType, type) {
+				this[selectType] = type;
+				this.$nextTick(() => {
+					this.scroll.refresh();
+				});
+			},
+			needShow(type, text) {
+				if(this.onlyContent && !text) {
+					return false;
+				}
+				if(this.selectType === 2) {
+					return true;
+				} else {
+					return type === this.selectType;
+				}
 			}
 		}
 	}
