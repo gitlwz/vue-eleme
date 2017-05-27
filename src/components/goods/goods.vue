@@ -16,7 +16,7 @@
 						<h1 class="group-title">{{item.name}}</h1>
 						<ul>
 							<li class="group-item" v-for="food in item.foods">
-								<div class="group-icon">
+								<div class="group-icon" @click.stop.prevent="toggleFood($event,food)">
 									<img :src="food.icon" width="57" />
 								</div>
 								<div class="group-content">
@@ -42,6 +42,7 @@
 		<div class="card">
 			<shopcart :foods.sync="getFood" :min-price="seller.minPrice" ref="shopCart"></shopcart>
 		</div>
+		<food :food="food" ref="food"></food>
 	</div>
 </template>
 
@@ -49,13 +50,15 @@
 	import BScroll from 'better-scroll';
 	import data from '@/assets/data.json';
 	import cartcontrol from '@/components/cartcontrol/cartcontrol';
-	import shopcart from '@/components/shopcart/shopcart'
-	require('./goods.less')
+	import shopcart from '@/components/shopcart/shopcart';
+	import food from '@/components/food/food';
+	import './goods.less';
 	const imgClasss = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
 	export default {
-		name: '',
+		name: 'goods',
 		data() {
 			return {
+				food:{},
 				seller: {},
 				goods: [],
 				scrolly: 0,
@@ -64,7 +67,8 @@
 		},
 		components: {
 			cartcontrol: cartcontrol,
-			shopcart: shopcart
+			shopcart: shopcart,
+			food: food
 		},
 		created() {
 			this.goods = data.goods;
@@ -124,6 +128,15 @@
 					height += item.clientHeight;
 					this.listHeight.push(height);
 				}
+			},
+			toggleFood(event,food) {
+				if(!event._constructed) {
+					// 去掉自带click事件的点击
+					return;
+				}
+				console.log('$$$$$$$$$',food)
+				this.food = food;
+				this.$refs.food.toggleShow()
 			},
 			selectMenu(index, event) {
 				if(!event._constructed) {
