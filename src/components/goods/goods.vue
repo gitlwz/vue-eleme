@@ -134,7 +134,6 @@
 					// 去掉自带click事件的点击
 					return;
 				}
-				console.log('$$$$$$$$$',food)
 				this.food = food;
 				this.$refs.food.toggleShow()
 			},
